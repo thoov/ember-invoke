@@ -60,6 +60,8 @@ export default Component.extend({
     
     Also note that a computed property wouldn't work as we are within an 
     iteration and cannot create a cp that is bound to an individual item. 
+    Instead we would have to create a wrapper cp that adds on these extra
+    properties which may or may not be what you want.
 
     This is where the invoke helper comes in. Now you can simply `invoke`
     any method on a given context and it will be called with the arguments
