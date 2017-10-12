@@ -53,13 +53,16 @@ export default Component.extend({
     `can-drink` helper that you would call like so:
 
     (can-drink person.age)
-
+    
     However, that logic might not make sense outside of the scope of
     this component. Also, many times the logic is simple (like in this
     example) and creating a whole separate helper file is over kill.
+    
+    Also note that a computed property wouldn't work as we are within an 
+    iteration and cannot create a cp that is bound to an individual item. 
 
     This is where the invoke helper comes in. Now you can simply `invoke`
-    any method on a give context and it will be called with the arguments
+    any method on a given context and it will be called with the arguments
     that are passed in.
   --}}
 
