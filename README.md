@@ -1,26 +1,71 @@
-# ember-invoke
+# Ember Invoke
 
-This README outlines the details of collaborating on this Ember addon.
+EmberJS helper to invoke methods on a given context such as components or controllers.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-invoke`
-* `npm install`
+`ember install ember-invoke`
 
-## Running
+## Usage
+```hbs
+{{invoke this 'methodName' 'any' 'number' 'of' 'args'}}
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+{{!-- OR --}}
 
-## Running Tests
+{{some-component prop=(invoke this 'methodName' 'any' 'number' 'of' 'args')}}
+```
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+## Why?
 
-## Building
+```js
+// component/restaurant.js
+import Component from '@ember/component';
 
-* `ember build`
+export default Component.extend({
+  people: [{
+    first: 'Bob',
+    last: 'Smith',
+    age: 43
+  }, {
+    first: 'Jen',
+    last: 'Doe',
+    age: 19
+  }, {
+    first: 'Bill',
+    last: 'Foobar'
+    age: 74
+  }],
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+  canDrink(age) {
+    return age >= 21;
+  }
+})
+```
+
+```hbs
+{{#each people as |person|}}
+
+  <h5>{{person.first}} {{person.last}}</h5>
+
+  {{!--
+    The only way you could make this work would be to create a
+    `can-drink` helper that you would call like so:
+
+    (can-drink person.age)
+
+    However, that logic might not make sense outside of the scope of
+    this component. Also, many times the logic is simple (like in this
+    example) and creating a whole separate helper file is over kill.
+
+    This is where the invoke helper comes in. Now you can simply `invoke`
+    any method on a give context and it will be called with the arguments
+    that are passed in.
+  --}}
+
+  {{#if (invoke this 'canDrink' person.age)}}
+    <p>is of legal drinking age</p>
+  {{else}}
+    <p>is <b>NOT</b> of legal drinking age</p>
+  {{/if}}
+{{/each}}
+```

@@ -1,17 +1,17 @@
 {
   "name": "ember-invoke",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "1.0.0",
+  "description": "Invoke methods from within handlebar templates",
   "keywords": [
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Travis Hoover <thoov7@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/thoov/ember-invoke",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
