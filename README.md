@@ -43,6 +43,7 @@ export default Component.extend({
 ```
 
 ```hbs
+{{!-- templates/component/restaurant.hbs --}}
 {{#each people as |person|}}
 
   <h5>{{person.first}} {{person.last}}</h5>
