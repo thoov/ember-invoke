@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { helper } from '@ember/component/helper';
 
 export function invokeFunction([context, method, ...rest]) {
@@ -5,7 +6,7 @@ export function invokeFunction([context, method, ...rest]) {
     throw new Error(`Method '${method}' is not defined or cannot be invoked.`);
   }
 
-  return context[method].apply(context, rest);
+  return Ember.get(context,method).apply(context, rest);
 }
 
 export default helper(invokeFunction);
